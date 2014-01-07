@@ -78,7 +78,8 @@ Confirmation.prototype.focus = function(type){
  */
 
 Confirmation.prototype.cancel = function(text){
-  this.el.find('.cancel').text(text);
+  var $el = $(this.el);
+  $el.find('.cancel').text(text);
   return this;
 };
 
@@ -91,7 +92,8 @@ Confirmation.prototype.cancel = function(text){
  */
 
 Confirmation.prototype.ok = function(text){
-  this.el.find('.ok').text(text);
+  var $el = $(this.el);
+  $el.find('.ok').text(text);
   return this;
 };
 
@@ -105,7 +107,8 @@ Confirmation.prototype.ok = function(text){
 
 Confirmation.prototype.show = function(fn){
   Dialog.prototype.show.call(this);
-  this.el.find('.' + this._focus).focus();
+  var $el = $(this.el);
+  $el.find('.' + this._focus).focus();
   this.callback = fn || function(){};
   return this;
 };
@@ -124,9 +127,9 @@ Confirmation.prototype.render = function(options){
   var self = this
   var actions = $(html);
   Dialog.prototype.render.call(this, options);
-
-  this.el.addClass('confirmation');
-  this.el.append(actions);
+  var $el = $(this.el);
+  $el.addClass('confirmation');
+  $el.append(actions);
 
   this.on('close', function(){
     self.emit('cancel');
