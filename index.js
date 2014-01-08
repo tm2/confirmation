@@ -107,6 +107,7 @@ Confirmation.prototype.ok = function(text){
 
 Confirmation.prototype.show = function(fn){
   Dialog.prototype.show.call(this);
+  this.el.style.marginLeft = -(this.el.offsetWidth / 2) + 'px'
   var $el = $(this.el);
   $el.find('.' + this._focus).focus();
   this.callback = fn || function(){};
