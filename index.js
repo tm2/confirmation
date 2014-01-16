@@ -107,6 +107,7 @@ Confirmation.prototype.ok = function(text){
 
 Confirmation.prototype.show = function(fn){
   Dialog.prototype.show.call(this);
+  Backbone.Events.trigger("window:keypress:context", "dialog");
   this.el.style.marginLeft = -(this.el.offsetWidth / 2) + 'px'
   var $el = $(this.el);
   $el.find('.' + this._focus).focus();
@@ -134,17 +135,20 @@ Confirmation.prototype.render = function(options){
 
   this.on('close', function(){
     self.emit('cancel');
+    Backbone.Events.trigger("dialog:close");
     self.callback(false);
   });
 
   this.on('escape', function(){
     self.emit('cancel');
+    Backbone.Events.trigger("dialog:close");
     self.callback(false);
   });
 
   actions.find('.cancel').click(function(e){
     e.preventDefault();
     self.emit('cancel');
+    Backbone.Events.trigger("dialog:close");
     self.callback(false);
     self.hide();
   });
@@ -152,6 +156,7 @@ Confirmation.prototype.render = function(options){
   actions.find('.ok').click(function(e){
     e.preventDefault();
     self.emit('ok');
+    Backbone.Events.trigger("dialog:close");
     self.callback(true);
     self.hide();
   });
