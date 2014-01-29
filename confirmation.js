@@ -1,1 +1,1 @@
-module.exports = '<div class="confirmation-actions">\n  <button class="cancel">Cancel</button>\n  <button class="ok main">Ok</button>\n</div>';
+module.exports = '<div class="confirmation-actions">\n  <button class="ok main">Ok</button>\n  <button class="cancel">Cancel</button>\n</div>';
